@@ -2,6 +2,12 @@
 
 Launcher minimalista e veloz para Smart TVs Android / Google TV (TCL e compatíveis), sem anúncios, com arranque instantâneo e totalmente localizado para o Brasil.
 
+<p align="center">
+  <img src="tv_preview.png" alt="Prateleira de Aplicativos com YouCine" width="850">
+  <br><br>
+  <img src="print_tv_baixo.png" alt="Meteorologia e Painel Financeiro" width="850">
+</p>
+
 ---
 
 ## ✨ Recursos
@@ -14,22 +20,33 @@ Launcher minimalista e veloz para Smart TVs Android / Google TV (TCL e compatív
 
 ---
 
-## 🚀 Instalação Rápida (via ADB)
+## 🚀 Instalação Rápida (via APK)
 
-1. Ative a **Depuração USB** nas opções de desenvolvedor da sua televisão.
-2. Com o computador conectado à mesma rede Wi-Fi da televisão, execute no terminal:
+Para quem quer apenas instalar e usar na TV sem precisar compilar:
+
+### 1. Baixar o APK
+Acesse a aba **[Releases](../../releases)** na coluna à direita deste repositório e baixe o arquivo `FreeMyTV.apk`.
+
+### 2. Ativar a Depuração USB na TV
+1. Acesse as **Configurações** da TV > **Sistema** > **Sobre**.
+2. Clique 7 vezes seguidas sobre **Número da Versão (Build)** até surgir a notificação *"Você agora é um desenvolvedor"*.
+3. Volte em **Sistema** > **Opções do desenvolvedor** e ative a **Depuração USB**.
+4. Verifique o endereço IP da televisão nas opções de rede (ex.: `192.168.3.10`).
+
+### 3. Instalar via ADB pelo Computador
+Com o pacote `adb` instalado no terminal, execute:
 
 ```bash
-# Conectar à televisão (confirme a autorização no ecrã com o controle remoto)
+# 1. Conectar à televisão (confirme o diálogo na tela com o controle remoto)
 adb connect IP_DA_SUA_TV:5555
 
-# Instalar a aplicação concedendo todas as permissões
+# 2. Instalar a aplicação concedendo as permissões
 adb install -g FreeMyTV.apk
 
-# Permitir arranque automático (essencial em televisores TCL)
+# 3. Permitir inicialização automática (essencial para televisores TCL)
 adb shell "appops set io.freemytv AUTO_START allow || appops set io.freemytv APP_AUTO_START allow"
 
-# Abrir o launcher
+# 4. Iniciar o launcher
 adb shell am start -n io.freemytv/.HomeActivity
 ```
 
@@ -37,10 +54,10 @@ adb shell am start -n io.freemytv/.HomeActivity
 
 ## 🛠️ Compilação Manual
 
-Caso queira clonar e compilar localmente:
+Caso prefira inspecionar o código e compilar localmente:
 
 ```bash
-# Instalar dependências (Ubuntu / Debian / Zorin OS)
+# Instalar dependências básicas (Ubuntu / Zorin OS / Debian)
 sudo apt-get update
 sudo apt-get install -y git openjdk-17-jdk adb aapt zipalign
 
@@ -55,4 +72,4 @@ cd Porto-TV-Rack
 ---
 
 ## 📌 Créditos
-Baseado no projeto de código aberto **Free My TV**, com ajustes estéticos na prateleira, assets em alta resolução e localização de dados para o Brasil.
+Baseado no projeto open-source **Free My TV**, com refinamento visual da prateleira, asset transparente de alta definição para o YouCine e localização completa para o Brasil.
