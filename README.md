@@ -1,6 +1,6 @@
-# Porto TvRack
+# 📺 Porto TvRack
 
-Launcher minimalista e veloz para Smart TVs Android / Google TV (TCL e compatíveis), sem anúncios, com arranque instantâneo e totalmente localizado para o Brasil.
+> Um inicializador (launcher) ultra leve, rápido e limpo para Smart TVs Android / Google TV (como as televisões TCL), totalmente livre de anúncios e configurado para o Brasil.
 
 <p align="center">
   <img src="tv_preview.png" alt="Prateleira de Aplicativos com YouCine" width="850">
@@ -10,66 +10,60 @@ Launcher minimalista e veloz para Smart TVs Android / Google TV (TCL e compatív
 
 ---
 
-## ✨ Recursos
+## ✨ O que este projeto tem de especial?
 
-* **Prateleira com 7 Aplicações:** YouTube, YouCine, Crunchyroll, Apple TV, Netflix, Prime Video e Navegador Web.
-* **Logótipo YouCine Nativo:** Ícone integrado com canal alfa (fundo transparente) de alta definição.
-* **Meteorologia e Previsão Local:** Pré-configurado para **Aracaju - SE** (latitude: -10.9472, longitude: -37.0731).
-* **Painel Financeiro em Tempo Real:** Acompanhamento automático de **IBOV**, **S&P 500**, **Bitcoin (BTC)** e **Dólar (USD)**.
-* **Leve e Ágil:** Desenvolvido sem serviços pesados em segundo plano.
-
----
-
-## 🚀 Instalação Rápida (via APK)
-
-Para quem quer apenas instalar e usar na TV sem precisar compilar:
-
-### 1. Baixar o APK
-Acesse a aba **[Releases](../../releases)** na coluna à direita deste repositório e baixe o arquivo `FreeMyTV.apk`.
-
-### 2. Ativar a Depuração USB na TV
-1. Acesse as **Configurações** da TV > **Sistema** > **Sobre**.
-2. Clique 7 vezes seguidas sobre **Número da Versão (Build)** até surgir a notificação *"Você agora é um desenvolvedor"*.
-3. Volte em **Sistema** > **Opções do desenvolvedor** e ative a **Depuração USB**.
-4. Verifique o endereço IP da televisão nas opções de rede (ex.: `192.168.3.10`).
-
-### 3. Instalar via ADB pelo Computador
-Com o pacote `adb` instalado no terminal, execute:
-
-```bash
-# 1. Conectar à televisão (confirme o diálogo na tela com o controle remoto)
-adb connect IP_DA_SUA_TV:5555
-
-# 2. Instalar a aplicação concedendo as permissões
-adb install -g FreeMyTV.apk
-
-# 3. Permitir inicialização automática (essencial para televisores TCL)
-adb shell "appops set io.freemytv AUTO_START allow || appops set io.freemytv APP_AUTO_START allow"
-
-# 4. Iniciar o launcher
-adb shell am start -n io.freemytv/.HomeActivity
-```
+* **Prateleira com 7 Apps:** Acesso direto a YouTube, YouCine, Crunchyroll, Apple TV, Netflix, Prime Video e Navegador Web.
+* **Ícone do YouCine Exclusivo:** Desenvolvido sob medida com fundo transparente em alta definição.
+* **Clima em Tempo Real:** Pré-configurado para **Aracaju - SE** (latitude: -10.9472, longitude: -37.0731).
+* **Painel Financeiro:** Cotações ao vivo de **IBOV**, **S&P 500**, **Bitcoin (BTC)** e **Dólar (USD)**.
+* **Zero Lerdeza:** Abre no mesmo segundo em que a TV liga, sem travar a interface.
 
 ---
 
-## 🛠️ Compilação Manual
+## 🧭 Guia Passo a Passo de Instalação
 
-Caso prefira inspecionar o código e compilar localmente:
-
-```bash
-# Instalar dependências básicas (Ubuntu / Zorin OS / Debian)
-sudo apt-get update
-sudo apt-get install -y git openjdk-17-jdk adb aapt zipalign
-
-# Clonar o repositório
-git clone [https://github.com/andremporto/Porto-TV-Rack.git](https://github.com/andremporto/Porto-TV-Rack.git)
-cd Porto-TV-Rack
-
-# Compilar
-./build.sh
-```
+Siga as etapas na ordem abaixo. Não precisa ter conhecimento técnico: basta ler e copiar os comandos.
 
 ---
 
-## 📌 Créditos
-Baseado no projeto open-source **Free My TV**, com refinamento visual da prateleira, asset transparente de alta definição para o YouCine e localização completa para o Brasil.
+### Etapa 1: Preparar a sua Televisão 📺
+
+O seu computador precisa de autorização para conversar com a televisão pela rede Wi-Fi.
+
+1. Ligue a TV e pegue o controle remoto.
+2. Abra as **Configurações** (ícone de engrenagem) > **Sistema** > **Sobre**.
+3. Desça até a opção **Número da Versão** (ou **Build**) e aperte o botão central do controle **7 vezes seguidas**.
+   * *Aparecerá um aviso na tela dizendo: "Você agora é um desenvolvedor!".*
+4. Volte uma tela, entre em **Opções do desenvolvedor** e ative a opção **Depuração USB**.
+5. Descubra o número IP da televisão:
+   * Vá em **Configurações** > **Rede e Internet** > clique na sua rede Wi-Fi conectada.
+   * Anote os números que aparecem em **Endereço IP** (exemplo: `192.168.3.10`).
+
+---
+
+### Etapa 2: Baixar o Aplicativo 📥
+
+1. No seu computador, vá na seção **[Releases](../../releases)** deste repositório.
+2. Na versão **v1.0**, clique no arquivo **`FreeMyTV.apk`** para fazer o download.
+3. Deixe o arquivo guardado na sua pasta tradicional de **Downloads**.
+
+---
+
+### Etapa 3: Instalar o ADB no seu Computador 💻
+
+O **ADB** é uma ferramenta do Google que funciona como um "cabo invisível" pela rede Wi-Fi. Escolha abaixo a seção do sistema que você usa:
+
+#### 🪟 Se você usa Windows
+1. Baixe o pacote oficial portátil do Google clicando aqui: **[Platform-Tools para Windows](https://dl.google.com/android/repository/platform-tools-latest-windows.zip)**.
+2. Abra a sua pasta de Downloads, clique com o botão direito no arquivo baixado e escolha **Extrair Tudo**.
+3. Mova o arquivo **`FreeMyTV.apk`** que você baixou na Etapa 2 para **DENTRO** da pasta extraída chamada `platform-tools`.
+4. Dentro dessa pasta `platform-tools`, clique na barra de endereço (onde fica o caminho da pasta no topo da janela), digite `cmd` e aperte **Enter**.
+   * *Uma janela preta do Prompt de Comando se abrirá já pronta para os comandos.*
+
+---
+
+#### 🐧 Se você usa Linux (Zorin OS, Ubuntu, Debian, Mint)
+1. Abra o seu **Terminal** (atalho: `Ctrl + Alt + T`).
+2. Instale o ADB rodando o comando:
+   ```bash
+   sudo apt
