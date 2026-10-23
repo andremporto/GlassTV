@@ -1,4 +1,4 @@
-# Porto-TV-Rack
+# Porto TvRack
 
 Launcher minimalista e veloz para Smart TVs Android / Google TV (TCL e compatíveis), sem anúncios, com arranque instantâneo e totalmente localizado para o Brasil.
 
