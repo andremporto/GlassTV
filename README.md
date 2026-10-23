@@ -1,4 +1,4 @@
-# 📺 Porto TvRack
+# 📺 Porto-TV-Rack
 
 > Um inicializador (launcher) ultra leve, rápido e limpo para Smart TVs Android / Google TV (como as televisões TCL), totalmente livre de anúncios e configurado para o Brasil.
 
@@ -7,6 +7,12 @@
   <br><br>
   <img src="print_tv_baixo.png" alt="Meteorologia e Painel Financeiro" width="850">
 </p>
+
+---
+
+> ⚠️ **Aviso Importante sobre Aplicativos de Streaming:**
+> O **Porto-TV-Rack** funciona exclusivamente como a tela inicial (launcher) da sua Smart TV. Por questões técnicas e legais, ele **não contém nem instala automaticamente** os aplicativos de terceiros. 
+> Serviços como **YouCine**, **Netflix**, **Prime Video**, **Crunchyroll**, etc., precisam já estar instalados na televisão (seja via Google Play Store, aplicativo Downloader ou pendrive) para que os atalhos da prateleira consigam abri-los.
 
 ---
 
@@ -22,13 +28,13 @@
 
 ## 🧭 Guia Passo a Passo de Instalação
 
-Siga as etapas na ordem abaixo. Não precisa ter conhecimento técnico: basta ler e copiar os comandos.
+Siga as etapas na ordem abaixo. Não precisa ter conhecimento avançado: basta ler com atenção e copiar os comandos.
 
 ---
 
 ### Etapa 1: Preparar a sua Televisão 📺
 
-O seu computador precisa de autorização para conversar com a televisão pela rede Wi-Fi.
+O seu computador precisa de autorização para se comunicar com a televisão pela rede Wi-Fi.
 
 1. Ligue a TV e pegue o controle remoto.
 2. Abra as **Configurações** (ícone de engrenagem) > **Sistema** > **Sobre**.
@@ -51,14 +57,14 @@ O seu computador precisa de autorização para conversar com a televisão pela r
 
 ### Etapa 3: Instalar o ADB no seu Computador 💻
 
-O **ADB** é uma ferramenta do Google que funciona como um "cabo invisível" pela rede Wi-Fi. Escolha abaixo a seção do sistema que você usa:
+O **ADB** é uma ferramenta do Google que funciona como uma ponte direta pela rede Wi-Fi. Escolha abaixo a seção correspondente ao sistema que você utiliza:
 
 #### 🪟 Se você usa Windows
 1. Baixe o pacote oficial portátil do Google clicando aqui: **[Platform-Tools para Windows](https://dl.google.com/android/repository/platform-tools-latest-windows.zip)**.
 2. Abra a sua pasta de Downloads, clique com o botão direito no arquivo baixado e escolha **Extrair Tudo**.
 3. Mova o arquivo **`FreeMyTV.apk`** que você baixou na Etapa 2 para **DENTRO** da pasta extraída chamada `platform-tools`.
 4. Dentro dessa pasta `platform-tools`, clique na barra de endereço (onde fica o caminho da pasta no topo da janela), digite `cmd` e aperte **Enter**.
-   * *Uma janela preta do Prompt de Comando se abrirá já pronta para os comandos.*
+   * *Uma janela preta do Prompt de Comando se abrirá já apontada para o local correto.*
 
 ---
 
@@ -68,7 +74,7 @@ O **ADB** é uma ferramenta do Google que funciona como um "cabo invisível" pel
    ```bash
    sudo apt update && sudo apt install -y adb
    ```
-3. Pelo terminal, entre na sua pasta de Downloads onde o arquivo está guardado:
+3. Pelo terminal, entre na sua pasta de Downloads onde o arquivo foi salvo:
    ```bash
    cd ~/Downloads
    ```
@@ -91,9 +97,9 @@ O **ADB** é uma ferramenta do Google que funciona como um "cabo invisível" pel
 
 ### Etapa 4: Conectar e Instalar na TV 🚀
 
-Com a janela de terminal/prompt aberta e no mesmo lugar onde está o arquivo `FreeMyTV.apk`, execute os comandos abaixo um por um:
+Com a janela de terminal/prompt aberta no mesmo diretório em que está o arquivo `FreeMyTV.apk`, execute os comandos abaixo na ordem:
 
-> **Atenção:** Nos comandos abaixo, troque `192.168.3.10` pelo número de IP real da sua TV que você anotou na Etapa 1.
+> **Atenção:** Nos comandos abaixo, substitua `192.168.3.10` pelo número IP real da sua TV que você anotou na Etapa 1.
 
 #### 1. Conectar o computador à TV
 * **No Linux ou Mac:**
@@ -104,7 +110,7 @@ Com a janela de terminal/prompt aberta e no mesmo lugar onde está o arquivo `Fr
   ```cmd
   adb connect 192.168.3.10:5555
   ```
-* **Olhe para a tela da TV agora:** vai aparecer uma janela perguntando *"Permitir depuração USB?"*. Marque a caixinha *"Sempre permitir deste computador"* e clique em **OK** com o controle remoto.
+* **Olhe para a tela da TV agora:** surgirá um aviso perguntando *"Permitir depuração USB?"*. Marque a opção *"Sempre permitir deste computador"* e confirme em **OK** com o controle remoto.
 
 #### 2. Instalar o launcher
 * **No Linux ou Mac:**
@@ -115,9 +121,9 @@ Com a janela de terminal/prompt aberta e no mesmo lugar onde está o arquivo `Fr
   ```cmd
   adb install -g FreeMyTV.apk
   ```
-*(Aguarde alguns segundos até aparecer a palavra **Success**).*
+*(Aguarde alguns segundos até que surja a confirmação **Success**).*
 
-#### 3. Dar permissão de inicialização (essencial para TVs TCL)
+#### 3. Conceder permissão de inicialização em segundo plano (essencial para TVs TCL)
 * **No Linux ou Mac:**
   ```bash
   adb shell "appops set io.freemytv AUTO_START allow || appops set io.freemytv APP_AUTO_START allow"
@@ -127,22 +133,20 @@ Com a janela de terminal/prompt aberta e no mesmo lugar onde está o arquivo `Fr
   adb shell "appops set io.freemytv AUTO_START allow || appops set io.freemytv APP_AUTO_START allow"
   ```
 
-#### 4. Abrir a aplicação na televisão
+#### 4. Iniciar o launcher na tela
 * **No Linux, Mac ou Windows:**
   ```bash
   adb shell am start -n io.freemytv/.HomeActivity
   ```
 
-Pronto! A nova interface já estará em execução na Smart TV.
-
 ---
 
 ## 🛠️ Para Desenvolvedores: Compilação Manual do Código
 
-Caso prefira inspecionar ou alterar o código-fonte antes de gerar o APK no Linux:
+Caso queira inspecionar ou personalizar o código-fonte antes de gerar o APK no Linux:
 
 ```bash
-# 1. Instalar pacotes de compilação
+# 1. Instalar os pacotes necessários
 sudo apt-get update
 sudo apt-get install -y git openjdk-17-jdk adb aapt zipalign python3-pil
 
@@ -150,11 +154,11 @@ sudo apt-get install -y git openjdk-17-jdk adb aapt zipalign python3-pil
 git clone [https://github.com/andremporto/Porto-TV-Rack.git](https://github.com/andremporto/Porto-TV-Rack.git)
 cd Porto-TV-Rack
 
-# 3. Compilar o instalador
+# 3. Compilar o arquivo APK
 chmod +x build.sh
 ./build.sh
 
-# 4. Enviar diretamente para a Smart TV
+# 4. Enviar diretamente para a TV conectada
 adb connect IP_DA_SUA_TV:5555
 adb install -r -g FreeMyTV.apk
 adb shell am start -n io.freemytv/.HomeActivity
@@ -163,4 +167,4 @@ adb shell am start -n io.freemytv/.HomeActivity
 ---
 
 ## 📌 Créditos
-Baseado no projeto open-source original **Free My TV**, com refinamento visual na prateleira de aplicativos, inclusão de ícone transparente de alta resolução para o YouCine e localização de clima e economia para o Brasil.
+Baseado no projeto open-source original **Free My TV**, com prateleira reestruturada, criação do asset em alta resolução com canal alfa para o YouCine e localização de clima e mercado financeiro para o Brasil.
