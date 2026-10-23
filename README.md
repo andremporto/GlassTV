@@ -1,4 +1,4 @@
-# 📺 Porto-TV-Rack
+# 📺 Porto TvRack
 
 > Um inicializador (launcher) ultra leve, rápido e limpo para Smart TVs Android / Google TV (como as televisões TCL), totalmente livre de anúncios e configurado para o Brasil.
 
