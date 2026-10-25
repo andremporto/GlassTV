@@ -3,9 +3,11 @@
 > Um inicializador (launcher) ultra leve, rápido e limpo para Smart TVs Android / Google TV (como as televisões TCL), totalmente livre de anúncios e configurado para o Brasil.
 
 <p align="center">
-  <img src="tv_preview.png" alt="Prateleira de Aplicativos com YouCine" width="850">
+  <img src="tv_preview.png" alt="Tela Inicial do Porto TvRack com Fundo Nítido e Prateleira de Apps" width="850">
   <br><br>
   <img src="print_tv_baixo.png" alt="Meteorologia e Painel Financeiro" width="850">
+  <br><br>
+  <img src="print_wallpapers.png" alt="Seletor de Papéis de Parede Integrado em Alta Definição" width="850">
 </p>
 
 ---
@@ -19,6 +21,8 @@
 ## ✨ O que este projeto tem de especial?
 
 * **Prateleira com 7 Apps:** Acesso direto a YouTube, YouCine, Crunchyroll, Apple TV, Netflix, Prime Video e Navegador Web.
+* **Design Minimalista e Limpo:** Foco refinado nos cards sem bordas brancas estouradas, sem legendas redundantes e prateleira com curvatura harmoniosa (*squircle*).
+* **Papéis de Parede Nativos em HD:** Seleção de papéis de parede integrados em altíssima definição sem blur/desfoque artificial ou clareamento forçado.
 * **Ícone do YouCine Exclusivo:** Desenvolvido sob medida com fundo transparente em alta definição.
 * **Clima em Tempo Real:** Pré-configurado para **Aracaju - SE** (latitude: -10.9472, longitude: -37.0731).
 * **Painel Financeiro:** Cotações ao vivo de **IBOV**, **S&P 500**, **Bitcoin (BTC)** e **Dólar (USD)**.
@@ -50,7 +54,7 @@ O seu computador precisa de autorização para se comunicar com a televisão pel
 ### Etapa 2: Baixar o Aplicativo 📥
 
 1. No seu computador, vá na seção **[Releases](../../releases)** deste repositório.
-2. Na versão **v1.0**, clique no arquivo **`FreeMyTV.apk`** para fazer o download.
+2. Na versão mais recente (**v1.2**), clique no arquivo **`FreeMyTV.apk`** para fazer o download.
 3. Deixe o arquivo guardado na sua pasta tradicional de **Downloads**.
 
 ---
