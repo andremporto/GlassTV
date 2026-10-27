@@ -20,13 +20,15 @@
 
 ## ✨ O que este projeto tem de especial?
 
+* **Feed Dinâmico do YouTube:** Navegação em tempo real por abas de **Recomendados**, **Inscrições** e **Histórico** da sua conta do YouTube através de conexão segura via OAuth 2.0 Device Flow (RFC 8628), sem anúncios e com reprodução direta no app oficial da TV.
 * **Prateleira com 7 Apps:** Acesso direto a YouTube, YouCine, Crunchyroll, Apple TV, Netflix, Prime Video e Navegador Web.
+* **53 Papéis de Parede Nativos em HD:** Galeria integrada expandida para 53 papéis de parede em alta definição 1080p (16:9 estrito) e miniaturas dedicadas de 320x180 para navegação fluida.
+* **Otimização Extrema de Memória RAM:** Motor de renderização configurado em `RGB_565` (reduz o peso dos bitmaps pela metade) e reciclagem ativa de memória ao fechar menus, mantendo o consumo de Java Heap abaixo de 6 MB.
 * **Design Minimalista e Limpo:** Foco refinado nos cards sem bordas brancas estouradas, sem legendas redundantes e prateleira com curvatura harmoniosa (*squircle*).
-* **Papéis de Parede Nativos em HD:** Seleção de papéis de parede integrados em altíssima definição sem blur/desfoque artificial ou clareamento forçado.
 * **Ícone do YouCine Exclusivo:** Desenvolvido sob medida com fundo transparente em alta definição.
 * **Clima em Tempo Real:** Pré-configurado para **Aracaju - SE** (latitude: -10.9472, longitude: -37.0731).
 * **Painel Financeiro:** Cotações ao vivo de **IBOV**, **S&P 500**, **Bitcoin (BTC)** e **Dólar (USD)**.
-* **Zero Lerdeza:** Abre no mesmo segundo em que a TV liga, sem travar a interface.
+* **Zero Lerdeza:** Inicialização instantânea ao ligar a TV, sem sobrecarregar TVs de entrada com pouca memória.
 
 ---
 
@@ -54,7 +56,7 @@ O seu computador precisa de autorização para se comunicar com a televisão pel
 ### Etapa 2: Baixar o Aplicativo 📥
 
 1. No seu computador, vá na seção **[Releases](../../releases)** deste repositório.
-2. Na versão mais recente (**v1.2**), clique no arquivo **`FreeMyTV.apk`** para fazer o download.
+2. Na versão mais recente (**v1.3**), clique no arquivo **`FreeMyTV.apk`** para fazer o download.
 3. Deixe o arquivo guardado na sua pasta tradicional de **Downloads**.
 
 ---
