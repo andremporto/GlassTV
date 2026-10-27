@@ -2,6 +2,10 @@
 
 > Um inicializador (launcher) ultra leve, rápido e limpo para Smart TVs Android / Google TV (como as televisões TCL), totalmente livre de anúncios e configurado para o Brasil.
 
+> 📺 **Compatibilidade de Dispositivos:**
+> * ✅ **100% Compatível:** Qualquer Smart TV, TV Stick ou TV Box com **Google TV ou Android TV** (TCL, Sony Bravia, Philips, Panasonic, Philco, Hisense, Chromecast com Google TV, Xiaomi Mi Box/Stick, Amazon Fire TV Stick, etc.).
+> * ❌ **Incompatível nativamente:** Smart TVs **Samsung (Tizen OS)**, **LG (webOS)** e **Roku TV** — esses sistemas não suportam arquivos APK Android diretamente. Para utilizá-lo nessas TVs, basta conectar um Chromecast ou TV Stick em uma entrada HDMI.
+
 <p align="center">
   <img src="tv_preview.png" alt="Tela Inicial do Porto TvRack com Fundo Nítido e Prateleira de Apps" width="850">
   <br><br>
@@ -58,6 +62,13 @@ O seu computador precisa de autorização para se comunicar com a televisão pel
 1. No seu computador, vá na seção **[Releases](../../releases)** deste repositório.
 2. Na versão mais recente (**v1.3**), clique no arquivo **`FreeMyTV.apk`** para fazer o download.
 3. Deixe o arquivo guardado na sua pasta tradicional de **Downloads**.
+
+> 💡 **Dica: Prefere instalar direto pela TV sem usar computador?**  
+> 1. Na loja de aplicativos da sua TV, instale o app gratuito **Downloader by AFTVnews**.  
+> 2. No campo de navegação do Downloader, digite o link direto:  
+>    `https://github.com/andremporto/Porto-TV-Rack/releases/latest/download/FreeMyTV.apk`  
+> 3. Conclua o download e clique em **Install** diretamente pela tela da televisão.  
+> *(Você também pode simplesmente copiar o `FreeMyTV.apk` para um pendrive e abri-lo na TV com qualquer gerenciador de arquivos como o X-plore).*
 
 ---
 
@@ -144,6 +155,24 @@ Com a janela de terminal/prompt aberta no mesmo diretório em que está o arquiv
   ```bash
   adb shell am start -n io.freemytv/.HomeActivity
   ```
+
+#### 5. Definir como Tela Inicial Padrão ao apertar a tecla HOME do controle
+Dependendo da marca da sua TV (especialmente em modelos Google TV como Sony, Philips, TCL ou Chromecast), o sistema tenta forçar o launcher de fábrica com anúncios. Para fazer a tecla **Home** do controle abrir diretamente o **Porto TvRack**:
+
+* **Opção Recomendada (Via comando ADB no terminal/Prompt):**
+  Desative temporariamente a tela cheia de anúncios do sistema original:
+  * **Para Google TV (Chromecast, Sony, Philips, TCL mais recentes):**
+    ```bash
+    adb shell pm disable-user --user 0 com.google.android.apps.tv.launcherx
+    ```
+  * **Para Android TV Clássico:**
+    ```bash
+    adb shell pm disable-user --user 0 com.google.android.tvlauncher
+    ```
+  *(Caso queira reativar a qualquer momento a tela original de fábrica, basta executar: `adb shell pm enable com.google.android.apps.tv.launcherx`)*.
+
+* **Opção Sem Computador (Via App da Play Store):**
+  Instale o aplicativo gratuito **Button Mapper** na Play Store da sua TV, ative o serviço de acessibilidade do app e configure um toque simples no botão **Home** para iniciar o **Porto TvRack**.
 
 ---
 
