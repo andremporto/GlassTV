@@ -1,13 +1,13 @@
-# 📺 Porto TvRack
+# 📺 GlassTV
 
-> Um inicializador (launcher) ultra leve, rápido e limpo para Smart TVs Android / Google TV (como as televisões TCL), totalmente livre de anúncios e configurado para o Brasil.
+> Um inicializador (launcher) ultra leve, rápido e moderno para Smart TVs Android / Google TV (como as televisões TCL), totalmente livre de anúncios e configurado para o Brasil.
 
 > 📺 **Compatibilidade de Dispositivos:**
 > * ✅ **100% Compatível:** Qualquer Smart TV, TV Stick ou TV Box com **Google TV ou Android TV** (TCL, Sony Bravia, Philips, Panasonic, Philco, Hisense, Chromecast com Google TV, Xiaomi Mi Box/Stick, Amazon Fire TV Stick, etc.).
 > * ❌ **Incompatível nativamente:** Smart TVs **Samsung (Tizen OS)**, **LG (webOS)** e **Roku TV** — esses sistemas não suportam arquivos APK Android diretamente. Para utilizá-lo nessas TVs, basta conectar um Chromecast ou TV Stick em uma entrada HDMI.
 
 <p align="center">
-  <img src="tv_preview.png" alt="Tela Inicial do Porto TvRack com Fundo Nítido e Prateleira de Apps" width="850">
+  <img src="tv_preview.png" alt="Tela Inicial do GlassTV com Design Glassmorphism e Prateleira de Apps" width="850">
   <br><br>
   <img src="print_tv_baixo.png" alt="Meteorologia e Painel Financeiro" width="850">
   <br><br>
@@ -17,7 +17,7 @@
 ---
 
 > ⚠️ **Aviso Importante sobre Aplicativos de Streaming:**
-> O **Porto-TV-Rack** funciona exclusivamente como a tela inicial (launcher) da sua Smart TV. Por questões técnicas e legais, ele **não contém nem instala automaticamente** os aplicativos de terceiros. 
+> O **GlassTV** funciona exclusivamente como a tela inicial (launcher) da sua Smart TV. Por questões técnicas e legais, ele **não contém nem instala automaticamente** os aplicativos de terceiros. 
 > Serviços como **YouCine**, **Netflix**, **Prime Video**, **Crunchyroll**, etc., precisam já estar instalados na televisão (seja via Google Play Store, aplicativo Downloader ou pendrive) para que os atalhos da prateleira consigam abri-los.
 
 ---
@@ -28,7 +28,7 @@
 * **Prateleira com 7 Apps:** Acesso direto a YouTube, YouCine, Crunchyroll, Apple TV, Netflix, Prime Video e Navegador Web.
 * **53 Papéis de Parede Nativos em HD:** Galeria integrada expandida para 53 papéis de parede em alta definição 1080p (16:9 estrito) e miniaturas dedicadas de 320x180 para navegação fluida.
 * **Otimização Extrema de Memória RAM:** Motor de renderização configurado em `RGB_565` (reduz o peso dos bitmaps pela metade) e reciclagem ativa de memória ao fechar menus, mantendo o consumo de Java Heap abaixo de 6 MB.
-* **Design Minimalista e Limpo:** Foco refinado nos cards sem bordas brancas estouradas, sem legendas redundantes e prateleira com curvatura harmoniosa (*squircle*).
+* **Design Minimalista e Limpo:** Foco refinado nos cards sem bordas brancas estouradas, sem legendas redundantes e prateleira com curvatura harmoniosa (*squircle*) e acabamento glassmorphism.
 * **Ícone do YouCine Exclusivo:** Desenvolvido sob medida com fundo transparente em alta definição.
 * **Clima em Tempo Real:** Pré-configurado para **Aracaju - SE** (latitude: -10.9472, longitude: -37.0731).
 * **Painel Financeiro:** Cotações ao vivo de **IBOV**, **S&P 500**, **Bitcoin (BTC)** e **Dólar (USD)**.
@@ -60,15 +60,15 @@ O seu computador precisa de autorização para se comunicar com a televisão pel
 ### Etapa 2: Baixar o Aplicativo 📥
 
 1. No seu computador, vá na seção **[Releases](../../releases)** deste repositório.
-2. Na versão mais recente (**v1.3**), clique no arquivo **`FreeMyTV.apk`** para fazer o download.
+2. Na versão mais recente (**v1.3**), clique no arquivo **`GlassTV.apk`** para fazer o download.
 3. Deixe o arquivo guardado na sua pasta tradicional de **Downloads**.
 
 > 💡 **Dica: Prefere instalar direto pela TV sem usar computador?**  
 > 1. Na loja de aplicativos da sua TV, instale o app gratuito **Downloader by AFTVnews**.  
 > 2. No campo de navegação do Downloader, digite o link direto:  
->    `https://github.com/andremporto/Porto-TV-Rack/releases/latest/download/FreeMyTV.apk`  
+>    `https://github.com/andremporto/GlassTV/releases/latest/download/GlassTV.apk`  
 > 3. Conclua o download e clique em **Install** diretamente pela tela da televisão.  
-> *(Você também pode simplesmente copiar o `FreeMyTV.apk` para um pendrive e abri-lo na TV com qualquer gerenciador de arquivos como o X-plore).*
+> *(Você também pode simplesmente copiar o `GlassTV.apk` para um pendrive e abri-lo na TV com qualquer gerenciador de arquivos como o X-plore).*
 
 ---
 
@@ -79,7 +79,7 @@ O **ADB** é uma ferramenta do Google que funciona como uma ponte direta pela re
 #### 🪟 Se você usa Windows
 1. Baixe o pacote oficial portátil do Google clicando aqui: **[Platform-Tools para Windows](https://dl.google.com/android/repository/platform-tools-latest-windows.zip)**.
 2. Abra a sua pasta de Downloads, clique com o botão direito no arquivo baixado e escolha **Extrair Tudo**.
-3. Mova o arquivo **`FreeMyTV.apk`** que você baixou na Etapa 2 para **DENTRO** da pasta extraída chamada `platform-tools`.
+3. Mova o arquivo **`GlassTV.apk`** que você baixou na Etapa 2 para **DENTRO** da pasta extraída chamada `platform-tools`.
 4. Dentro dessa pasta `platform-tools`, clique na barra de endereço (onde fica o caminho da pasta no topo da janela), digite `cmd` e aperte **Enter**.
    * *Uma janela preta do Prompt de Comando se abrirá já apontada para o local correto.*
 
@@ -104,7 +104,7 @@ O **ADB** é uma ferramenta do Google que funciona como uma ponte direta pela re
    ```bash
    brew install android-platform-tools
    ```
-   *(Caso não use o Homebrew, baixe o **[Platform-Tools para Mac](https://dl.google.com/android/repository/platform-tools-latest-darwin.zip)**, descompacte a pasta, mova o arquivo `FreeMyTV.apk` para dentro dela e abra o terminal dentro dessa pasta).*
+   *(Caso não use o Homebrew, baixe o **[Platform-Tools para Mac](https://dl.google.com/android/repository/platform-tools-latest-darwin.zip)**, descompacte a pasta, mova o arquivo `GlassTV.apk` para dentro dela e abra o terminal dentro dessa pasta).*
 3. Entre na pasta onde está o arquivo baixado:
    ```bash
    cd ~/Downloads
@@ -114,7 +114,7 @@ O **ADB** é uma ferramenta do Google que funciona como uma ponte direta pela re
 
 ### Etapa 4: Conectar e Instalar na TV 🚀
 
-Com a janela de terminal/prompt aberta no mesmo diretório em que está o arquivo `FreeMyTV.apk`, execute os comandos abaixo na ordem:
+Com a janela de terminal/prompt aberta no mesmo diretório em que está o arquivo `GlassTV.apk`, execute os comandos abaixo na ordem:
 
 > **Atenção:** Nos comandos abaixo, substitua `192.168.3.10` pelo número IP real da sua TV que você anotou na Etapa 1.
 
@@ -132,11 +132,11 @@ Com a janela de terminal/prompt aberta no mesmo diretório em que está o arquiv
 #### 2. Instalar o launcher
 * **No Linux ou Mac:**
   ```bash
-  adb install -g FreeMyTV.apk
+  adb install -g GlassTV.apk
   ```
 * **No Windows (CMD):**
   ```cmd
-  adb install -g FreeMyTV.apk
+  adb install -g GlassTV.apk
   ```
 *(Aguarde alguns segundos até que surja a confirmação **Success**).*
 
@@ -157,7 +157,7 @@ Com a janela de terminal/prompt aberta no mesmo diretório em que está o arquiv
   ```
 
 #### 5. Definir como Tela Inicial Padrão ao apertar a tecla HOME do controle
-Dependendo da marca da sua TV (especialmente em modelos Google TV como Sony, Philips, TCL ou Chromecast), o sistema tenta forçar o launcher de fábrica com anúncios. Para fazer a tecla **Home** do controle abrir diretamente o **Porto TvRack**:
+Dependendo da marca da sua TV (especialmente em modelos Google TV como Sony, Philips, TCL ou Chromecast), o sistema tenta forçar o launcher de fábrica com anúncios. Para fazer a tecla **Home** do controle abrir diretamente o **GlassTV**:
 
 * **Opção Recomendada (Via comando ADB no terminal/Prompt):**
   Desative temporariamente a tela cheia de anúncios do sistema original:
@@ -172,7 +172,7 @@ Dependendo da marca da sua TV (especialmente em modelos Google TV como Sony, Phi
   *(Caso queira reativar a qualquer momento a tela original de fábrica, basta executar: `adb shell pm enable com.google.android.apps.tv.launcherx`)*.
 
 * **Opção Sem Computador (Via App da Play Store):**
-  Instale o aplicativo gratuito **Button Mapper** na Play Store da sua TV, ative o serviço de acessibilidade do app e configure um toque simples no botão **Home** para iniciar o **Porto TvRack**.
+  Instale o aplicativo gratuito **Button Mapper** na Play Store da sua TV, ative o serviço de acessibilidade do app e configure um toque simples no botão **Home** para iniciar o **GlassTV**.
 
 ---
 
@@ -186,8 +186,8 @@ sudo apt-get update
 sudo apt-get install -y git openjdk-17-jdk adb aapt zipalign python3-pil
 
 # 2. Clonar este repositório
-git clone [https://github.com/andremporto/Porto-TV-Rack.git](https://github.com/andremporto/Porto-TV-Rack.git)
-cd Porto-TV-Rack
+git clone https://github.com/andremporto/GlassTV.git
+cd GlassTV
 
 # 3. Compilar o arquivo APK
 chmod +x build.sh
@@ -195,11 +195,11 @@ chmod +x build.sh
 
 # 4. Enviar diretamente para a TV conectada
 adb connect IP_DA_SUA_TV:5555
-adb install -r -g FreeMyTV.apk
+adb install -r -g GlassTV.apk
 adb shell am start -n io.freemytv/.HomeActivity
 ```
 
 ---
 
 ## 📌 Créditos
-Baseado no projeto open-source original **Free My TV**, com prateleira reestruturada, criação do asset em alta resolução com canal alfa para o YouCine e localização de clima e mercado financeiro para o Brasil.
+Baseado no projeto open-source original **Free My TV**, evoluído para **GlassTV** com estética moderna glassmorphism, integração nativa com YouTube via OAuth 2.0, prateleira refinada, ícone translúcido do YouCine e localização de meteorologia e mercado financeiro para o Brasil.
