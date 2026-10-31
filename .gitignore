@@ -1,0 +1,10 @@
+# Build output
+out/
+*.idsig
+
+# Scratch & temporary workspace files
+scratch/
+.idea/
+*.swp
+*.tmp
+
