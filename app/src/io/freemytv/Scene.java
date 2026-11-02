@@ -76,11 +76,12 @@ final class Scene {
         }
         auroraNode.setUseCompositingLayer(true, layerPaint);
         flatRim.setStyle(Paint.Style.STROKE);
-        flatRim.setColor(0x33FFFFFF);
-        flatRim.setStrokeWidth(1.5f);
+        flatRim.setColor(0x00000000);
+        flatRim.setStrokeWidth(0);
         if (glass == null) {
             sheenPaint.setStyle(Paint.Style.STROKE);
-            sheenPaint.setStrokeWidth(1.5f);
+            sheenPaint.setColor(0x00000000);
+            sheenPaint.setStrokeWidth(0);
         }
     }
 
@@ -349,7 +350,6 @@ final class Scene {
                 flatFill.setColor(Ui.alpha(tint | 0xFF000000, Math.max(0.35f, tintAlpha)));
                 c.drawRoundRect(r, radius, radius, flatFill);
             }
-            c.drawRoundRect(r, radius, radius, flatRim);
             return;
         }
         float hw = r.width() / 2, hh = r.height() / 2, inner = Math.min(hw, hh);
@@ -371,8 +371,7 @@ final class Scene {
     /**
      * The glass without shaders: the soft copy `a` (`aw` × `ah`; blended with `b` by `mix` during a photo change)
      * stretched to the screen and drawn through the rounded rectangle, minus the layer's offset, so the glass shows
-     * what is really behind it; then the same tint as the flat fill, a faint lift, the rim and a sheen on the top
-     * edge. The paints and matrices are reused: nothing is allocated here.
+     * what is really behind it; then the same tint as the flat fill, a faint lift. The paints and matrices are reused: nothing is allocated here.
      */
     private void bitmapGlass(Canvas c, RectF r, float radius, BitmapShader a, float aw, float ah, BitmapShader b, float mix,
                              int tint, float tintAlpha, float lift, float body, float specular, float alpha) {
@@ -380,22 +379,9 @@ final class Scene {
         if (body > 0) {
             drawThrough(c, r, radius, a, aw, ah, alpha * body);
             if (b != null && mix > 0.004f) drawThrough(c, r, radius, b, aw, ah, alpha * body * mix);
-            // The tint and the lift in one pass (fill rate is what this GPU runs out of): the lift pulls the tint a
-            // little toward white instead of a second full-area fill.
             int tinted = lift > 0.001f ? blend(tint | 0xFF000000, 0xFFFFFFFF, Math.min(0.25f, lift * 2)) : tint | 0xFF000000;
             flatFill.setColor(Ui.alpha(tinted, tintAlpha * alpha * body));
             c.drawRoundRect(r, radius, radius, flatFill);
-        }
-        flatRim.setAlpha(Math.round(0x33 * alpha));
-        c.drawRoundRect(r, radius, radius, flatRim);
-        flatRim.setAlpha(0x33);
-        if (specular > 0.001f) {
-            sheenPaint.setAlpha(Math.round(255 * Math.min(1, specular) * alpha));
-            c.save();
-            c.translate(0, r.top);
-            sheenRect.set(r.left, 0, r.right, r.height());
-            c.drawRoundRect(sheenRect, radius, radius, sheenPaint);
-            c.restore();
         }
     }
 

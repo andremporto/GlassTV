@@ -25,6 +25,11 @@ import android.graphics.drawable.Drawable;
 import android.media.tv.TvContract;
 import android.media.tv.TvInputInfo;
 import android.media.tv.TvInputManager;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.os.storage.StorageManager;
+import android.os.storage.StorageVolume;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -60,6 +65,8 @@ final class HomeApps {
     static final int INPUTS = 7;
     /** Wallpaper selector button. */
     static final int WALLPAPERS = 8;
+    /** Dynamic USB / Pen Drive card. */
+    static final int USB = 9;
     /** Image size of each card (16:9; on screen it shows up to ~330 px wide). */
     static final int TILE_W = 384, TILE_H = 216;
 
@@ -323,12 +330,101 @@ final class HomeApps {
         return it;
     }
 
-    /** For the bottom drawer: live TV and every HDMI input (the ones with no device are shown dimmed). */
+    /** For the inputs section: live TV, every HDMI input and dynamic USB Pen Drive when mounted. */
     static List<Item> allInputs(Context c) {
         List<Item> items = new ArrayList<>();
         if (liveTv(c) != null) items.add(shortcut(LIVE_TV, "live", Ui.tr("Live TV"), "tv"));
         items.addAll(inputs(c, true));
+        if (isUsbConnected(c)) {
+            Item usb = shortcut(USB, "usb", Ui.tr("Pen Drive"), "usb");
+            usb.connected = true;
+            items.add(usb);
+        }
         return items;
+    }
+
+    /** Detects whether an external removable USB drive is currently mounted. */
+    static boolean isUsbConnected(Context c) {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                StorageManager sm = (StorageManager) c.getSystemService(Context.STORAGE_SERVICE);
+                if (sm != null) {
+                    List<StorageVolume> volumes = sm.getStorageVolumes();
+                    for (StorageVolume vol : volumes) {
+                        if (vol.isRemovable() && !vol.isPrimary()) {
+                            String state = vol.getState();
+                            if (Environment.MEDIA_MOUNTED.equals(state) || Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Throwable ignored) {}
+        try {
+            File storage = new File("/storage");
+            if (storage.exists() && storage.isDirectory()) {
+                File[] files = storage.listFiles();
+                if (files != null) {
+                    for (File f : files) {
+                        String name = f.getName().toLowerCase(Locale.ROOT);
+                        if (!name.equals("emulated") && !name.equals("self") && f.canRead() && f.list() != null) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        } catch (Throwable ignored) {}
+        return false;
+    }
+
+    /** Opens the standard Android TV file manager to browse USB storage. */
+    static Intent openUsbIntent(Context c) {
+        Intent intent = null;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                StorageManager sm = (StorageManager) c.getSystemService(Context.STORAGE_SERVICE);
+                if (sm != null) {
+                    for (StorageVolume vol : sm.getStorageVolumes()) {
+                        if (vol.isRemovable() && !vol.isPrimary()) {
+                            intent = vol.createOpenDocumentTreeIntent();
+                            if (intent != null && intent.resolveActivity(c.getPackageManager()) != null) {
+                                return intent;
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Throwable ignored) {}
+
+        String[] managers = {
+            "com.android.documentsui",
+            "com.google.android.documentsui",
+            "com.tcl.mediacenter",
+            "com.sony.dtv.filemanager",
+            "com.mediatek.filemanager",
+            "com.xiaomi.mitv.mediaexplorer",
+            "com.estrongs.android.pop",
+            "com.alphainventor.filemanager",
+            "com.cxinventor.file.explorer",
+            "com.lonelycatgames.Xplore"
+        };
+        for (String pkg : managers) {
+            intent = c.getPackageManager().getLeanbackLaunchIntentForPackage(pkg);
+            if (intent == null) intent = c.getPackageManager().getLaunchIntentForPackage(pkg);
+            if (intent != null) return intent;
+        }
+
+        try {
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.parse("content://com.android.externalstorage.documents/root"), "*/*");
+            if (intent.resolveActivity(c.getPackageManager()) != null) return intent;
+        } catch (Throwable ignored) {}
+
+        intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        return intent;
     }
 
     private static List<Item> inputs(Context c) {
@@ -527,6 +623,9 @@ final class HomeApps {
                 break;
             case INPUT:
                 intent = inputIntent(a, it);
+                break;
+            case USB:
+                intent = openUsbIntent(a);
                 break;
             case SETTINGS:
                 intent = new Intent().setComponent(new ComponentName(a, SettingsActivity.class));

@@ -483,21 +483,7 @@ public class SettingsActivity extends Activity {
                 y += errorLayout.getLineBaseline(errorLayout.getLineCount() - 1) - errorLayout.getLineBaseline(0) + 46 * k;
             }
             y = drawComparison(c, y);
-            y = drawRecs(c, y + 26 * k);
-            drawNotices(c, y + 40 * k);
-        }
-
-        /** Home screen picks: status, and the credit TMDB asks for. */
-        private float drawRecs(Canvas c, float y) {
-            float x = LIST_X * k + 30 * k;
-            c.drawText("YOUTUBE SYNC", x, y, header);
-            boolean loggedIn = YouTubeAuth.get(getContext()).isLoggedIn();
-            String line = loggedIn ? Ui.tr("Connected (OK to disconnect)") : Ui.tr("Not connected");
-            c.drawText(TextUtils.ellipsize(line, notice, 790 * k, TextUtils.TruncateAt.END).toString(), x, y + 42 * k, notice);
-            version.setTextAlign(Paint.Align.LEFT);
-            c.drawText("Feeds: " + Ui.tr("Recommended") + " · " + Ui.tr("Subscriptions") + " · " + Ui.tr("History"), x, y + 78 * k, version);
-            version.setTextAlign(Paint.Align.CENTER);
-            return y + 78 * k;
+            drawNotices(c, y + 30 * k);
         }
 
         /** List row: no background; focused, white with a shadow (the Apple TV focus). Returns how focused it is. */
@@ -686,7 +672,7 @@ public class SettingsActivity extends Activity {
 
         private static final String[] UNITS = {"auto", "C", "F"}, THEMES = {"auto", "light", "dark"};
         /** Home Settings: language, temperature, theme, my photos, sounds, weather, city, forecast, quotes, then one row per coin. */
-        private static final int PHOTOS_ROW = 3, CITY_ROW = 6, FORECAST_ROW = 7, QUOTES_ROW = 8, YOUTUBE_ROW = 9, COIN_ROWS = 10;
+        private static final int PHOTOS_ROW = 3, CITY_ROW = 6, FORECAST_ROW = 7, QUOTES_ROW = 8, COIN_ROWS = 9;
         /** Home Settings rows on screen at once (what fits above the hints at 1080p); a longer list scrolls. */
         private static final int SETTINGS_VISIBLE = 10;
 
@@ -705,7 +691,6 @@ public class SettingsActivity extends Activity {
             l.add(Ui.tr("City"));
             l.add(Ui.tr("Forecast"));
             l.add(Ui.tr("Quotes widget"));
-            l.add(Ui.tr("YouTube Account"));
             l.add("Ibovespa");
             l.add("S&P 500");
             l.add("Bitcoin");
@@ -732,8 +717,6 @@ public class SettingsActivity extends Activity {
             v[CITY_ROW] = !cityStatus.isEmpty() ? cityStatus : Prefs.city().isEmpty() ? "—" : Prefs.city();
             v[FORECAST_ROW] = Prefs.forecast().equals("days") ? Ui.tr("Next days") : Ui.tr("Next hours");
             v[QUOTES_ROW] = onOff(Prefs.quotes());
-            boolean ytLog = YouTubeAuth.get(getContext()).isLoggedIn();
-            v[YOUTUBE_ROW] = ytLog ? Ui.tr("Connected (OK to disconnect)") : Ui.tr("Not connected");
             // No quotes widget, nowhere to show prices: the coins read as off (and stay locked) until it is back on.
             for (int i = COIN_ROWS; i < v.length; i++) v[i] = onOff(Prefs.quotes() && Prefs.coin(i - COIN_ROWS));
             return v;
@@ -1002,14 +985,6 @@ public class SettingsActivity extends Activity {
                     Prefs.setForecast(Prefs.forecast().equals("days") ? "hours" : "days");
                     return;
                 case QUOTES_ROW: Prefs.setQuotes(!Prefs.quotes()); break;
-                case YOUTUBE_ROW:
-                    if (YouTubeAuth.get(getContext()).isLoggedIn()) {
-                        YouTubeAuth.get(getContext()).disconnect();
-                    } else {
-                        YouTubeAuth.get(getContext()).startPairing(null);
-                    }
-                    invalidate();
-                    return;
                 default:
                     if (!Prefs.quotes()) return;
                     Prefs.setCoin(row - COIN_ROWS, !Prefs.coin(row - COIN_ROWS));

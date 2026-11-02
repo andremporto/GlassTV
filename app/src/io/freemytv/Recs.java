@@ -21,22 +21,10 @@ final class Recs {
         String link;
         boolean detailed;
         File photo;
-
-        // YouTube dynamic integration fields
-        String videoId;
-        String channelTitle;
-        String duration;
-        Bitmap thumbnail;
-        BitmapShader thumbnailShader;
-        boolean isPairingCard;
-        String userCode;
-        String verificationUrl;
     }
 
     static String key(Pick p) {
         if (p == null) return "";
-        if (p.isPairingCard) return "pairing:" + p.userCode;
-        if (p.videoId != null) return "yt:" + p.videoId + ":" + (p.thumbnail != null ? "1" : "0");
         if (p.photo != null) return "photo:" + p.photo.getName();
         return (p.kind != null ? p.kind : "") + ":" + p.id;
     }

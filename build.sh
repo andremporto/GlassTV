@@ -76,8 +76,6 @@ final class Config {
     static final String THEME = "$(prop theme auto)";
     static final boolean DISABLE_ASSISTANT = $ASSIST;
     static final boolean SHOW_CRYPTO = $CRYPTO;
-    static final String YOUTUBE_CLIENT_ID = "$(prop youtube_client_id '')";
-    static final String YOUTUBE_CLIENT_SECRET = "$(prop youtube_client_secret '')";
 }
 EOF
 
@@ -142,14 +140,14 @@ else "${JAVA_HOME:+$JAVA_HOME/bin/}jar" -u -M -f out/base.apk -C out classes.dex
 if [ -n "${FREEMYTV_KEYSTORE:-}" ]; then
   [ -n "${FREEMYTV_KEYSTORE_PASS:-}" ] || { echo "FREEMYTV_KEYSTORE_PASS is empty"; exit 1; }
   "$BT/apksigner$BAT" sign --ks "$FREEMYTV_KEYSTORE" --ks-pass env:FREEMYTV_KEYSTORE_PASS --key-pass env:FREEMYTV_KEYSTORE_PASS \
-    --out GlassTV.apk out/aligned.apk
+    --out GlassTV-Light.apk out/aligned.apk
 else
   if [ ! -f freemytv.keystore ]; then
     "$KEYTOOL" -genkeypair -keystore freemytv.keystore -alias freemytv -keyalg RSA -keysize 2048 -validity 20000 \
       -storepass freemytv -keypass freemytv -dname "CN=GlassTV" >/dev/null 2>&1
   fi
-  "$BT/apksigner$BAT" sign --ks freemytv.keystore --ks-pass pass:freemytv --key-pass pass:freemytv --out GlassTV.apk out/aligned.apk
+  "$BT/apksigner$BAT" sign --ks freemytv.keystore --ks-pass pass:freemytv --key-pass pass:freemytv --out GlassTV-Light.apk out/aligned.apk
 fi
-echo "Built GlassTV.apk ($(du -h GlassTV.apk | cut -f1)). Install: adb install -r GlassTV.apk"
+echo "Built GlassTV-Light.apk ($(du -h GlassTV-Light.apk | cut -f1)). Install: adb install -r GlassTV-Light.apk"
 
 

@@ -11,7 +11,7 @@ echo "==> 📺 Garantindo conexão ADB ($TV_IP)..."
 adb connect "$TV_IP"
 
 echo "==> 🚀 Instalando APK na Smart TV..."
-adb -s "$TV_IP" install -r GlassTV.apk
+adb -s "$TV_IP" install -r --no-incremental GlassTV-Light.apk
 
 echo "==> 🎬 Abrindo HomeActivity na TV..."
 adb -s "$TV_IP" shell am start -n io.freemytv/.HomeActivity

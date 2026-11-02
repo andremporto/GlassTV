@@ -100,18 +100,10 @@ final class Wallpapers {
             thumb = Bitmap.createBitmap(w, h, Bitmap.Config.RGB_565);
             Canvas canvas = new Canvas(thumb);
             Paint paint = new Paint();
-            paint.setShader(new LinearGradient(0, 0, w, h, 0xFF1C1C22, 0xFF0A0A0D, Shader.TileMode.CLAMP));
+            paint.setShader(new RadialGradient(w * 0.50f, h * 0.32f, Math.max(w, h) * 0.65f,
+                    new int[] { 0xFFFACD46, 0xFFF5AC28, 0xFFE07810, 0xFFC85505 },
+                    new float[] { 0.0f, 0.40f, 0.78f, 1.0f }, Shader.TileMode.CLAMP));
             canvas.drawRect(0, 0, w, h, paint);
-
-            // Subtle aurora glow preview
-            Paint glow = new Paint();
-            glow.setShader(new RadialGradient(w * 0.35f, h * 0.45f, w * 0.5f,
-                    0x664A90E2, 0x00000000, Shader.TileMode.CLAMP));
-            canvas.drawRect(0, 0, w, h, glow);
-
-            glow.setShader(new RadialGradient(w * 0.75f, h * 0.55f, w * 0.45f,
-                    0x559013FE, 0x00000000, Shader.TileMode.CLAMP));
-            canvas.drawRect(0, 0, w, h, glow);
         } else {
             // First try loading pre-generated 320x180 thumbnail
             thumb = loadFromAsset(c, "wallpapers/thumbs/" + item.key, w, h);

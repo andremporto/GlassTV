@@ -77,6 +77,7 @@ public class HomeActivity extends Activity {
         super.onTrimMemory(level);
         if (level >= TRIM_MEMORY_BACKGROUND) {
             Wallpapers.clearAll();
+            if (home != null) home.trimMemory();
         }
     }
 

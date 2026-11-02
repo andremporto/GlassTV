@@ -22,17 +22,35 @@
 
 ---
 
+## 📦 Escolha a sua Versão
+
+O GlassTV está disponível em duas versões prontas para atender ao seu perfil de uso:
+
+| Recurso | ⚡ **Glass TV Light** (Recomendada) | 📺 **Glass TV Completa** |
+| :--- | :---: | :---: |
+| **Arquivo APK** | [**`GlassTV-Light.apk`**](GlassTV-Light.apk) | [**`GlassTV.apk`**](GlassTV.apk) |
+| **Design / Layout** | **Apple tvOS em 3 Blocos** (Top Bar, Shelf 16:9, Entradas/Atalhos) | Layout Clássico com Feed Horizontal |
+| **Feed do YouTube** | ❌ Desativado (Zero consumo em background) | ✅ Integrado via OAuth 2.0 Device Flow |
+| **Consumo de Memória (RAM)** | **Extremamente Baixo (< 6 MB Java Heap)** | Baixo (< 15 MB) |
+| **Painel Financeiro** | **6 Ativos** (IBOV, S&P 500, BTC, ETH, SOL, Dólar) | 4 Ativos (IBOV, S&P 500, BTC, Dólar) |
+| **Detecção de Pen Drive (USB)** | ✅ Automática e dinâmica na barra de Entradas | ❌ |
+| **Papéis de Parede Nativos** | ✅ 53 Wallpapers HD 1080p | ✅ 53 Wallpapers HD 1080p |
+| **Ideal para** | TVs de entrada (1 GB a 2 GB RAM), rapidez extrema | Quem deseja navegar no YouTube pela Home |
+
+---
+
 ## ✨ O que este projeto tem de especial?
 
-* **Feed Dinâmico do YouTube:** Navegação em tempo real por abas de **Recomendados**, **Inscrições** e **Histórico** da sua conta do YouTube através de conexão segura via OAuth 2.0 Device Flow (RFC 8628), sem anúncios e com reprodução direta no app oficial da TV.
-* **Prateleira com 7 Apps:** Acesso direto a YouTube, YouCine, Crunchyroll, Apple TV, Netflix, Prime Video e Navegador Web.
-* **53 Papéis de Parede Nativos em HD:** Galeria integrada expandida para 53 papéis de parede em alta definição 1080p (16:9 estrito) e miniaturas dedicadas de 320x180 para navegação fluida.
-* **Otimização Extrema de Memória RAM:** Motor de renderização configurado em `RGB_565` (reduz o peso dos bitmaps pela metade) e reciclagem ativa de memória ao fechar menus, mantendo o consumo de Java Heap abaixo de 6 MB.
-* **Design Minimalista e Limpo:** Foco refinado nos cards sem bordas brancas estouradas, sem legendas redundantes e prateleira com curvatura harmoniosa (*squircle*) e acabamento glassmorphism.
-* **Ícone do YouCine Exclusivo:** Desenvolvido sob medida com fundo transparente em alta definição.
-* **Clima em Tempo Real:** Pré-configurado para **Aracaju - SE** (latitude: -10.9472, longitude: -37.0731).
-* **Painel Financeiro:** Cotações ao vivo de **IBOV**, **S&P 500**, **Bitcoin (BTC)** e **Dólar (USD)**.
-* **Zero Lerdeza:** Inicialização instantânea ao ligar a TV, sem sobrecarregar TVs de entrada com pouca memória.
+* **Design Apple tvOS em 3 Blocos (Versão Light):**
+  * **Header Superior:** Identificador nítido "Glass TV Light" e botões circulares de ação rápida (TV Aberta, Entradas, Papéis de Parede, Ajustes).
+  * **Bloco 1 (Informações):** Cards de Meteorologia completa e Cotações Financeiras (6 ativos) em vidro escuro translúcido com cantos contínuos (*squircles*).
+  * **Bloco 2 (Prateleira de Destaque):** 7 Apps Essenciais em proporção widescreen 16:9 (`196 x 110.25dp`) sobre bandeja cápsula de vidro escuro com sombra ambiente suave.
+  * **Bloco 3 (Entradas & Atalhos):** Entradas (TV ao Vivo, HDMI 1, HDMI 2, USB dinâmico) e atalhos essenciais alinhados às margens.
+* **Detecção Dinâmica de Pen Drive / USB:** Ícone inteligente no bloco de entradas que surge automaticamente ao plugar um pen drive ou HD externo, abrindo o gerenciador de arquivos.
+* **53 Papéis de Parede Nativos em HD:** Galeria integrada expandida para 53 papéis de parede em alta definição 1080p e miniaturas de 320x180 para navegação super fluida.
+* **Otimização Extrema de Memória RAM:** Motor de renderização configurado em `RGB_565` (reduz o peso dos bitmaps pela metade) e reciclagem ativa de memória, mantendo o consumo de Java Heap abaixo de 6 MB.
+* **Zero Lerdeza:** Inicialização instantânea ao ligar a TV, sem anúncios e sem engasgos em TVs de entrada.
+* **Versão Completa com Feed do YouTube:** Mantida no repositório (`GlassTV.apk`) para quem ainda deseja autenticação OAuth 2.0 e feed ao vivo de recomendações.
 
 ---
 
@@ -59,16 +77,19 @@ O seu computador precisa de autorização para se comunicar com a televisão pel
 
 ### Etapa 2: Baixar o Aplicativo 📥
 
-1. No seu computador, vá na seção **[Releases](../../releases)** deste repositório.
-2. Na versão mais recente (**v1.3**), clique no arquivo **`GlassTV.apk`** para fazer o download.
+1. No seu computador, vá na seção **[Releases](../../releases)** deste repositório (ou baixe diretamente pelos links da tabela acima).
+2. Baixe o APK desejado:
+   * **Recomendado:** **`GlassTV-Light.apk`** (Versão Light, moderna e super veloz).
+   * **Alternativa:** **`GlassTV.apk`** (Versão Completa com feed de YouTube).
 3. Deixe o arquivo guardado na sua pasta tradicional de **Downloads**.
 
 > 💡 **Dica: Prefere instalar direto pela TV sem usar computador?**  
 > 1. Na loja de aplicativos da sua TV, instale o app gratuito **Downloader by AFTVnews**.  
-> 2. No campo de navegação do Downloader, digite o link direto:  
->    `https://github.com/andremporto/GlassTV/releases/latest/download/GlassTV.apk`  
+> 2. No campo de navegação do Downloader, digite o link direto da versão Light:  
+>    `https://github.com/andremporto/GlassTV/releases/latest/download/GlassTV-Light.apk`  
+>    *(Ou digite o link terminando em `GlassTV.apk` para a versão completa).*  
 > 3. Conclua o download e clique em **Install** diretamente pela tela da televisão.  
-> *(Você também pode simplesmente copiar o `GlassTV.apk` para um pendrive e abri-lo na TV com qualquer gerenciador de arquivos como o X-plore).*
+> *(Você também pode simplesmente copiar o APK para um pendrive e abri-lo na TV com qualquer gerenciador de arquivos como o X-plore).*
 
 ---
 
@@ -114,7 +135,7 @@ O **ADB** é uma ferramenta do Google que funciona como uma ponte direta pela re
 
 ### Etapa 4: Conectar e Instalar na TV 🚀
 
-Com a janela de terminal/prompt aberta no mesmo diretório em que está o arquivo `GlassTV.apk`, execute os comandos abaixo na ordem:
+Com a janela de terminal/prompt aberta no mesmo diretório em que está o arquivo `GlassTV-Light.apk` (ou `GlassTV.apk`), execute os comandos abaixo na ordem:
 
 > **Atenção:** Nos comandos abaixo, substitua `192.168.3.10` pelo número IP real da sua TV que você anotou na Etapa 1.
 
@@ -132,11 +153,13 @@ Com a janela de terminal/prompt aberta no mesmo diretório em que está o arquiv
 #### 2. Instalar o launcher
 * **No Linux ou Mac:**
   ```bash
-  adb install -g GlassTV.apk
+  adb install -g GlassTV-Light.apk
+  # (ou 'adb install -g GlassTV.apk' se tiver baixado a versão completa)
   ```
 * **No Windows (CMD):**
   ```cmd
-  adb install -g GlassTV.apk
+  adb install -g GlassTV-Light.apk
+  REM (ou 'adb install -g GlassTV.apk' se tiver baixado a versão completa)
   ```
 *(Aguarde alguns segundos até que surja a confirmação **Success**).*
 
